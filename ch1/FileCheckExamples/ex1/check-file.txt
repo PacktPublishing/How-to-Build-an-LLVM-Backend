@@ -1,0 +1,13 @@
+; Demonstrate some FileCheck features.
+
+; CHECK: I
+; CHECK-SAME: feel
+; CHECK: great
+; CHECK-NEXT: today
+; CHECK:    How about you?
+; CHECK-DAG: Meh
+; CHECK-DAG: I don
+
+; CHECK-NOT: or is it
+; CHECK: The end
+; CHECK: or is it
