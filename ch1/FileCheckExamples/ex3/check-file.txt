@@ -1,5 +1,3 @@
-; Demonstrate some FileCheck features.
-
 ; CHECK: I
 ; CHECK-SAME: feel
 ; CHECK: great
