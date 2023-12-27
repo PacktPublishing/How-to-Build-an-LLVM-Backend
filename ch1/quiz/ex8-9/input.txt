@@ -1,0 +1,7 @@
+This is an example of match
+# Do not want to see that
+with FileCheck
+This line needs to happen exactly after “With FileCheck”
+
+# Neither this
+Over

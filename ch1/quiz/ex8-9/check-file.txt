@@ -1,0 +1,6 @@
+CHECK: This is an example of match
+SECOND-CHECK-NOT: Do not want to see that
+CHECK: with FileCheck
+CHECK-NEXT: This line needs to happen exactly after “With FileCheck”
+SECOND-CHECK-NOT: Neither this
+CHECK: Over
