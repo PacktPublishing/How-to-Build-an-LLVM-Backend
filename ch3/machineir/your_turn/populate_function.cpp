@@ -47,5 +47,10 @@ MachineFunction *populateMachineIR(MachineModuleInfo &MMI, Function &Foo,
   // The type for the address of var.
   LLT VarAddrLLT = LLT::pointer(/*AddressSpace=*/0, /*SizeInBits=*/64);
 
+  // The stack slot for var.
+  int FrameIndex = MF.getFrameInfo().CreateStackObject(32, VarStackAlign,
+                                                       /*IsSpillSlot=*/false);
+
+  // TODO: Populate MF.
   return &MF;
 }

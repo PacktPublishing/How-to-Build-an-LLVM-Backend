@@ -56,6 +56,9 @@ MachineFunction *solutionPopulateMachineIR(MachineModuleInfo &MMI,
   Align VarStackAlign(4);
   // The type for the address of var.
   LLT VarAddrLLT = LLT::pointer(/*AddressSpace=*/0, /*SizeInBits=*/64);
+  // The stack slot for var.
+  int FrameIndex = MF.getFrameInfo().CreateStackObject(32, VarStackAlign,
+                                                       /*IsSpillSlot=*/false);
 
   // Populate entry.
   MachineIRBuilder MIBuilder(*EntryBB, EntryBB->end());
@@ -63,8 +66,6 @@ MachineFunction *solutionPopulateMachineIR(MachineModuleInfo &MMI,
   Register A = MIBuilder.buildCopy(I32, W0).getReg(0);
   Register B = MIBuilder.buildCopy(I32, W1).getReg(0);
   // Get the stack slot for var.
-  int FrameIndex = MF.getFrameInfo().CreateStackObject(32, VarStackAlign,
-                                                       /*IsSpillSlot=*/false);
   Register VarStackAddr =
       MIBuilder.buildFrameIndex(VarAddrLLT, FrameIndex).getReg(0);
   // Add.
