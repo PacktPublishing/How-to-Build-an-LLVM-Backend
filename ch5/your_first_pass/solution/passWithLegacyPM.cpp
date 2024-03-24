@@ -44,7 +44,7 @@ char SolutionConstantPropagation::ID = 0;
 // function.
 INITIALIZE_PASS(/*passImplementationName=*/SolutionConstantPropagation,
                 /*commandLineArgName=*/"legacy-solution",
-                /*name=*/"Legacy Solution", /*modifyCFG=*/false,
+                /*name=*/"Legacy Solution", /*isCFGOnly=*/false,
                 /*isAnalysis=*/false);
 
 Pass *createSolutionPassForLegacyPM() {
