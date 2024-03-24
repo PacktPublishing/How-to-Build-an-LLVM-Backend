@@ -2,8 +2,6 @@
 #define YOURTURN_PASSWITHNEWPM_H
 #include "llvm/IR/PassManager.h" // For PassInfoMixin.
 
-using namespace llvm;
-
 namespace llvm {
 class Function;
 };

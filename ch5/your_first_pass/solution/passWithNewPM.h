@@ -2,15 +2,14 @@
 #define SOLUTION_PASSWITHNEWPM_H
 #include "llvm/IR/PassManager.h" // For PassInfoMixin.
 
-using namespace llvm;
-
 namespace llvm {
 class Function;
 };
 
 class SolutionConstantPropagationNewPass
-    : public PassInfoMixin<SolutionConstantPropagationNewPass> {
+    : public llvm::PassInfoMixin<SolutionConstantPropagationNewPass> {
 public:
-  PreservedAnalyses run(Function &F, FunctionAnalysisManager &AM);
+  llvm::PreservedAnalyses run(llvm::Function &F,
+                              llvm::FunctionAnalysisManager &AM);
 };
 #endif
