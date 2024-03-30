@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
     // Then do the same thing with the new pass manager.
     std::unique_ptr<Module> ModuleForNewPM = CloneModule(*MyModule);
 
-    // CAREFUL the order to the manager is important here since the destructor
+    // CAREFUL the order of the manager is important here since the destructor
     // needs to be called in the right order otherwise it will crash.
     FunctionAnalysisManager FAM;
     ModuleAnalysisManager MAM;
