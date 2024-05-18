@@ -23,10 +23,7 @@ const char *InputIR =
 
 bool isVectorOfIntV1(Instruction &Add) {
   auto *VecTy = dyn_cast<VectorType>(Add.getType());
-  if (!VecTy)
-    return false;
-  auto *IntTy = dyn_cast<IntegerType>(VecTy->getElementType());
-  return IntTy != nullptr;
+  return VecTy && isa<IntegerType>(VecTy->getElementType());
 }
 
 bool isVectorOfIntV2(Instruction &Add) {
