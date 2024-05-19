@@ -20,3 +20,8 @@ To run:
 ```bash
 ./build/check_vec_int_ty [input.ll]
 ```
+
+===
+Example for horizontal add
+
+clang -emit-llvm hadd_vector.c -S -o - -O0 | sed -e 's#optnone##g' | <path/to/llvm/build>/bin/opt -S -passes=mem2reg,instnamer
