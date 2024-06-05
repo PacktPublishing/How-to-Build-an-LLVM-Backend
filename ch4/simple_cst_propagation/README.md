@@ -64,7 +64,7 @@ Processing function '<current_func>'
 
 The message after each processing will tell you if you did better than the reference implementation, i.e., you transformed the input IR and the reference implementation did not.
 
-## Producting an input ##
+## Producing an input ##
 
 Using the following command line, you can produce from a C file an input to give to your program:
 ```bash
