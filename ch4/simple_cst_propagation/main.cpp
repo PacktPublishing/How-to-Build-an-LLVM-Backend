@@ -120,6 +120,7 @@ int main(int argc, char **argv) {
              << (yourTurnIsCorrect ? "passed" : "failed") << ")\n";
     }
 
+    outs() << '\n';
     if (solutionDidSomething) {
       if (!yourTurnDidSomething)
         outs()
@@ -131,6 +132,7 @@ int main(int argc, char **argv) {
       outs() << "Nice! You managed to optimize something whereas the provided "
                 "solution did not!";
     }
+    outs() << "######\n";
   }
 
   return !hadError;

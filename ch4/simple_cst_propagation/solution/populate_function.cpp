@@ -14,26 +14,7 @@
 
 using namespace llvm;
 
-// The goal of this function is to build a MachineFunction that
-// represents the lowering of the following foo, a C function:
-// extern int baz();
-// extern void bar(int);
-// void foo(int a, int b) {
-//   int var = a + b;
-//   if (var == 0xFF) {
-//     bar(var);
-//     var = baz();
-//   }
-//   bar(var);
-// }
-//
-// The proposed ABI is:
-// - 32-bit arguments are passed through registers: w0, w1
-// - 32-bit returned values are passed through registers: w0, w1
-// w0 and w1 are given as argument of this Function.
-//
-// The local variable named var is expected to live on the stack.
-
+// Helper function to deal with binary instructions.
 static Value *visitBinary(Instruction &Instr, LLVMContext &Ctxt,
                           std::optional<APInt> (*Computation)(const APInt &,
                                                               const APInt &)) {
@@ -53,6 +34,9 @@ static Value *visitBinary(Instruction &Instr, LLVMContext &Ctxt,
   return NewConstant;
 }
 
+// Takes \p Foo and apply a simple constant propagation optimization.
+// \returns true if \p Foo was modified (i.e., something had been constant
+// propagated), false otherwise.
 bool solutionConstantPropagation(Function &Foo) {
   LLVMContext &Ctxt = Foo.getParent()->getContext();
   bool MadeChanges = false;
