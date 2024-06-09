@@ -9,6 +9,9 @@ set(CURR_TARGET
   implicit_change_of_scope
 )
 
+# Add the search path for LLVM.
+include(../../cmake/utils/set-llvm-install-prefix.cmake)
+
 set(SRC
   "main.cpp"
 )
@@ -16,23 +19,14 @@ set(SRC
 set(INC
 )
 
+set(CMAKE_CXX_FLAGS -fno-rtti)
+
+# Now build our tools
 add_executable(${CURR_TARGET} ${SRC} ${INC})
 
-# To find the particular dependencies a an llvm library use:
-# llvm-config --libs  <lib>
-# E.g., llvm-config --libs  core 
-target_link_libraries(${CURR_TARGET}
-  LLVMAsmParser # parseAssemblyString
-  LLVMBinaryFormat # dep from core
-  LLVMBitstreamReader # dep from core
-  LLVMCore # IR and co.
-  LLVMDemangle # dep for core
-  LLVMSupport # errs
-  LLVMRemarks # dep for core
-  LLVMTargetParser # dep for core
-  ncurses # LLVMSupport has some dependencies on the terminal
-)
+# Find the libraries that correspond to the LLVM components
+# that we wish to use
+llvm_map_components_to_libnames(llvm_libs core asmparser)
 
-# Add the search path for LLVM.
-include(../../cmake/utils/set-llvm-install-prefix.cmake)
-
+# Link against LLVM libraries
+target_link_libraries(${CURR_TARGET} ${llvm_libs})
