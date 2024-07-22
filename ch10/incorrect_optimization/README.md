@@ -1,4 +1,4 @@
-# Build your own simple constant propagation #
+# Use LLVM tools to reduce isses #
 
 In this exercise you need to leverage `llvm-reduce` or `bugpoint` to produce the smallest possible test case for the broken constant propagation implemented in `populate_function.cpp`.
 
@@ -31,7 +31,7 @@ ninja -C build
 
 This builds the default target in the build directory.
 
-This should produce in the `build` directory a binary named `simple_cst_propagation`.
+This should produce in the `build` directory a binary named `buggy_cst_propagation`.
 
 ## Run ##
 
