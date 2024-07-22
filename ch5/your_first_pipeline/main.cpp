@@ -9,6 +9,7 @@
 #include "llvm/IR/PassTimingInfo.h" // For reportAndResetTimings.
 #include "llvm/IR/Verifier.h"
 #include "llvm/IRReader/IRReader.h"        // For parseIRFile.
+#include "llvm/Support/CommandLine.h"      // For cl::.
 #include "llvm/Support/Debug.h"            // For errs().
 #include "llvm/Support/SourceMgr.h"        // For SMDiagnostic.
 #include "llvm/Transforms/Utils/Cloning.h" // For CloneModule.
