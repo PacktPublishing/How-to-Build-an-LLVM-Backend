@@ -38,6 +38,10 @@ static Value *visitBinary(Instruction &Instr, LLVMContext &Ctxt,
 // \returns true if \p Foo was modified (i.e., something had been constant
 // propagated), false otherwise.
 bool buggyConstantPropagation(Function &Foo) {
+
+  if (Foo.empty())
+    return false;
+
   LLVMContext &Ctxt = Foo.getParent()->getContext();
   bool MadeChanges = false;
 
