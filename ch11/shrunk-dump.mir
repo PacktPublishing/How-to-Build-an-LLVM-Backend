@@ -1,0 +1,29 @@
+---
+name:            _Z3fooPxx
+tracksRegLiveness: true
+body:             |
+  bb.0:
+    liveins: $x0, $x1
+  
+    %3:gpr64 = COPY $x1
+    %2:gpr64 = COPY $x0
+    TBZX %3, 63, %bb.2
+    B %bb.1
+  
+  bb.1:
+    ADJCALLSTACKDOWN 0, 0, implicit-def dead $sp, implicit $sp
+    $x0 = COPY %3
+    BL 123, csr_darwin_aarch64_aapcs, implicit-def dead $lr, implicit $sp, implicit $x0, implicit-def $sp, implicit-def $x0
+    ADJCALLSTACKUP 0, 0, implicit-def dead $sp, implicit $sp
+    %4:gpr64all = COPY $x0
+    %0:gpr64all = COPY %4
+  
+  bb.2:
+    %1:gpr64 = PHI %3, %bb.0, %0, %bb.1
+    %5:gpr64common = ADDXrs %2, %1, 3
+    %6:gpr32 = LDRWui killed %5, 36 :: (load (s32), align 8)
+    %7:gpr32 = COPY %1.sub_32
+    $w0 = ADDWrr %6, %7
+    RET_ReallyLR implicit $w0
+
+...
