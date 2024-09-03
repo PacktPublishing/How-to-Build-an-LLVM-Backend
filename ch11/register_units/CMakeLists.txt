@@ -14,10 +14,10 @@ include(${LLVM_CMAKE_DIR}/TableGen.cmake)
 
 # Create the different TableGen outputs.
 set(LLVM_TARGET_DEFINITIONS solution-reginfo.td)
-tablegen(LLVM SolutionRegisterInfo.inc -gen-register-info)
+tablegen(LLVM SolutionGenRegisterInfo.inc -gen-register-info)
 
 set(LLVM_TARGET_DEFINITIONS yourTurn-reginfo.td)
-tablegen(LLVM YourTurnRegisterInfo.inc -gen-register-info)
+tablegen(LLVM YourTurnGenRegisterInfo.inc -gen-register-info)
 
 # Register a target for all the TableGen outputs.
 add_public_tablegen_target(CommonTableGen)
