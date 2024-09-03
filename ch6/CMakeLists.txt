@@ -9,7 +9,7 @@ include(../cmake/utils/set-llvm-install-prefix.cmake)
 
 # Hook up the TableGen tooling.
 set(LLVM_TABLEGEN_EXE ${LLVM_TOOLS_BINARY_DIR}/llvm-tblgen)
-message(WARNING ${LLVM_TABLEGEN_EXE})
+include(${LLVM_CMAKE_DIR}/AddLLVM.cmake)
 include(${LLVM_CMAKE_DIR}/TableGen.cmake)
 
 # Create the different TableGen outputs.
@@ -29,4 +29,4 @@ tablegen(LLVM multiclass-with-def-type.inc -print-records)
 add_public_tablegen_target(CommonTableGen)
 
 # Make that target part of the `all` target.
-set_target_properties(CommonTableGen PROPERTIES EXCLUDE_FROM_ALL 0) 
+set_target_properties(CommonTableGen PROPERTIES EXCLUDE_FROM_ALL 0)
