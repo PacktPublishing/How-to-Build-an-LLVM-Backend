@@ -1,10 +1,5 @@
 include "llvm/Target/Target.td"
 
-def myii: InstrInfo;
-def Solution : Target {
-  let InstructionSet = myii;
-}
-
 let Namespace = "Solution" in {
 // Describe the following hiearchy.
 //               +-----------+-----------+-----------+
@@ -40,6 +35,7 @@ def s2 : Register<"s2">;
 def d0 : Register<"d0"> {
   let SubRegIndices = [sub32_low, sub32_high];
   let SubRegs = [s0, s1];
+  let CoveredBySubRegs = true;
 }
 def d1 : Register<"d1"> {
   let SubRegIndices = [sub32_low];
@@ -52,6 +48,7 @@ def d2 : Register<"d2">;
 def q0 : Register<"q0"> {
   let SubRegIndices = [sub64_low, sub64_high];
   let SubRegs = [d0, d1];
+  let CoveredBySubRegs = true;
 }
 def q1 : Register<"q1"> {
   let SubRegIndices = [sub64_low];
@@ -64,3 +61,9 @@ def q2 : Register<"q2">;
 def SINGLES : RegisterClass<"Solution", [f32], 32, (sequence "s%u", 0, 2)>;
 def DOUBLES : RegisterClass<"Solution", [f64], 64, (sequence "d%u", 0, 2)>;
 def QUADS : RegisterClass<"Solution", [f128], 128, (sequence "q%u", 0, 2)>;
+
+// Boilerplate to get the TableGen backend happy.
+def myii: InstrInfo;
+def Solution : Target {
+  let InstructionSet = myii;
+}
